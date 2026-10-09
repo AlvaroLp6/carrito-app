@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Carrito Reactivo</ion-title>
+    <ion-badge slot="end" color="tertiary" class="ion-margin-end">
+      Total: {{ precioTotal() }}€
+    </ion-badge>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <!-- Nuevo Control Flow de Angular -->
+    @for (prod of productos(); track prod.id) {
+      <ion-item>
+        <ion-label>
+          <h2>{{ prod.nombre }}</h2>
+          <p>{{ prod.precio }}€</p>
+        </ion-label>
+        <ion-button fill="clear" (click)="eliminarProducto(prod.id)">
+          Eliminar
+        </ion-button>
+      </ion-item>
+    } @empty {
+      <ion-item>
+        <ion-label class="ion-text-center">El carrito está vacío</ion-label>
+      </ion-item>
+    }
+  </ion-list>
+
+  <div class="ion-padding">
+    <ion-button expand="block" (click)="agregarProductoAleatorio()">
+      Añadir Producto Random
+    </ion-button>
+  </div>
+</ion-content>
